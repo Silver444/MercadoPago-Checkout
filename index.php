@@ -1,4 +1,4 @@
 <?php
-require('pagina.html');
+require_once('index.html');
 
 ?>
