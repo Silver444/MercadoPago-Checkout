@@ -11,8 +11,9 @@
     
     <div class="container">
         <h2 class="display-2">Detalle Producto</h2>
-        <div class="row">
-            <div class="col-md-6 offset-3">
+        <div class="row" id="row">
+            <!--***************************************************************************************-->
+         <!--   <div class="col-md-6 offset-3">
                 <div class="card">
                     <div class="card-header">
                         <h3>LiquidaNET</h3>
@@ -31,9 +32,83 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>   -->
+            <!--***************************************************************************************-->
+
+
         </div>
     </div>
+
+    
+    <script>
+        window.onload = function(){
+            const productos = [
+                {titulo: "LiquidaNET", precio: 1479.90, imagen: "assets/img/LiquidaPackage.jpg"},
+                {titulo: "LiquidaNET", precio: 2000.90, imagen: "assets/img/LiquidaPackage.jpg"},
+                {titulo: "LiquidaNET", precio: 150.90, imagen: "assets/img/LiquidaPackage.jpg"},
+                {titulo: "LiquidaNET", precio: 600.90, imagen: "assets/img/LiquidaPackage.jpg"}
+            ]
+
+            for (let index = 0; index < productos.length; index++) {
+                const row = document.getElementById('row');
+            let col = document.createElement('div');
+            col.classList.add('col-md-4');
+            row.appendChild(col)
+                let card = document.createElement('div');
+                card.classList.add('card');
+                col.appendChild(card);
+
+                let cardHeader = document.createElement('div');
+                cardHeader.classList.add('card-header');
+                card.appendChild(cardHeader);
+                cardHeader.innerHTML = `<h3> ${productos[index].titulo} </h3>`
+
+                let cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+                card.appendChild(cardBody);
+                cardBody.innerHTML = `<img src="${productos[index].imagen}" style="width:100%">`
+                let priceBox = document.createElement('h4');
+                cardBody.appendChild(priceBox);
+                priceBox.innerHTML = `Precio $ ${productos[index].precio}`;
+                priceBox.classList.add('mt-2');
+
+                // AQUÍ SE CREA LA FORMA
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "http://localhost:3000/checkout");
+
+                // CREACIÓN DE INPUTS
+                var tit = document.createElement("input");
+                tit.setAttribute("type", "hidden");
+                tit.setAttribute("name", "title");
+                tit.setAttribute("value", productos[index].titulo);
+                var pri = document.createElement("input");
+                pri.setAttribute("type", "hidden");
+                pri.setAttribute("name", "price");
+                pri.setAttribute("value", productos[index].precio);
+                form.appendChild(tit); 
+                form.appendChild(pri); 
+                var s = document.createElement("input");
+                s.setAttribute("type", "submit");
+                s.setAttribute("value", "Comprar Licencia");
+                s.setAttribute("class", "btn btn-primary btn-block")
+                form.appendChild(s);
+                cardBody.appendChild(form);
+                /*let boton = document.createElement('button');
+                boton.classList.add('btn', 'btn-primary', 'btn-block');
+                boton.type = "submit";
+                cardBody.appendChild(boton);
+                boton.innerText = "Comprar ahora";*/
+                
+                
+            }
+
+            
+                
+                
+
+        }
+    </script>
 
 </body>
 </html>

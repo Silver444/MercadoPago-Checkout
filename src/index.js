@@ -17,6 +17,14 @@ mercadopago.configure({
 app.post('/checkout', (req, res) => {
   // Crea un objeto de preferencia
 let preference = {
+ 
+    back_urls: {
+          success: "https://www.tu-eke/christian-pendeja.html",
+          failure: "http://www.tu-sitio/failure",
+          pending: "http://www.tu-sitio/pending"
+      },
+      auto_return: "approved",
+  
   items: [
     {
       title: req.body.title,
